@@ -77,8 +77,8 @@ def threeSum(nums: list[int]) -> list[int]:
 
 
 # Time and space complexity:
-# Time complexity:
-# Space complexity:
+# Time complexity: O(n^2)
+# Space complexity: O(1)
 
 # Question 4:
 # Given a singly linked list, reverse the nodes of the linked list
@@ -93,7 +93,7 @@ class Node:
 
 def printList(head: Optional[Node]) -> None:
     while head is not None:
-        print(head.data)
+        print("Node:", head.data)
         head = head.next
 
 
@@ -112,6 +112,7 @@ def linkedList() -> None:
 
 
 def reverseList(head: Node) -> Node:
+    print("Reversing the linked list")
     prev = None
     current: Optional[Node] = head
     while current is not None:
