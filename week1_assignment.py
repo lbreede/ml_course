@@ -58,7 +58,6 @@ def threeSum(nums: list[int]) -> list[int]:
         if i > 0 and s_nums[i] == s_nums[i - 1]:
             continue
         left, right = i + 1, len(s_nums) - 1
-        print(i, left, right)
         while left < right:
             a, b, c = s_nums[i], s_nums[left], s_nums[right]
             total = a + b + c
