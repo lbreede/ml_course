@@ -27,7 +27,7 @@ def twoSum(nums: list[int], target: int) -> list[int]:
 
 # Question 2:
 # Given some arrays with strings on them, find the most common longest prefix among
-# ythem.
+# them.
 # Example: ["flower","flow","flight"] output = "fl"
 
 
@@ -92,12 +92,14 @@ class Node:
 
 
 def printList(head: Optional[Node]) -> None:
+    print("    - Printing the linked list")
     while head is not None:
-        print("Node:", head.data)
+        print("        - Node:", head.data)
         head = head.next
 
 
 def linkedList() -> None:
+    print("    - Creating a linked list")
     head = Node(1)
     middle = Node(2)
     tail = Node(3)
@@ -112,7 +114,7 @@ def linkedList() -> None:
 
 
 def reverseList(head: Node) -> Node:
-    print("Reversing the linked list")
+    print("    - Reversing the linked list")
     prev = None
     current: Optional[Node] = head
     while current is not None:
@@ -130,10 +132,20 @@ def reverseList(head: Node) -> Node:
 # Space complexity: O(1)
 
 if __name__ == "__main__":
-    assert twoSum([2, 3, 4, 2, 7], 10) == [1, 4], "twoSum failed"
-    assert (
-        findMostCommonPrefix(["flower", "flow", "flight"]) == "fl"
-    ), "findMostCommonPrefix failed"
-    assert threeSum([1, 2, -2, -1, 3]) == [-2, -1, 3], "threeSum failed"
+    # assert twoSum([2, 3, 4, 2, 7], 10) == [1, 4], "twoSum failed"
+    # assert (
+    #     findMostCommonPrefix(["flower", "flow", "flight"]) == "fl"
+    # ), "findMostCommonPrefix failed"
+    # assert threeSum([1, 2, -2, -1, 3]) == [-2, -1, 3], "threeSum failed"
 
+    two_sum = twoSum([2, 3, 4, 2, 7], 10)
+    print(f"1. Two Sum: {two_sum!r}")
+
+    most_common_prefix = findMostCommonPrefix(["flower", "flow", "flight"])
+    print(f"2. Most Common Prefix: {most_common_prefix!r}")
+
+    three_sum = threeSum([1, 2, -2, -1, 3])
+    print(f"3. Three Sum: {three_sum!r}")
+
+    print("4. Linked List:")
     linkedList()
