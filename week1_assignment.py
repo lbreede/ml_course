@@ -49,31 +49,26 @@ def findMostCommonPrefix(arr: list[str]) -> str:
 
 # Question 3:
 # Given an array of integers, return the indices of three numbers that add up to 0.
-# example: [1, 2, -2, -1, 3] output = [0, 2, 3]
+# example: [1, 2, -2, -1, 3] output = [2, 3, 4]
 
 
 def threeSum(nums: list[int]) -> list[int]:
-    nums.sort()
-    res = []
-    for i in range(len(nums) - 2):
-        if i > 0 and nums[i] == nums[i - 1]:
+    s_nums = sorted(nums)
+    for i in range(len(s_nums) - 2):
+        if i > 0 and s_nums[i] == s_nums[i - 1]:
             continue
-        left, right = i + 1, len(nums) - 1
+        left, right = i + 1, len(s_nums) - 1
+        print(i, left, right)
         while left < right:
-            total = nums[i] + nums[left] + nums[right]
+            a, b, c = s_nums[i], s_nums[left], s_nums[right]
+            total = a + b + c
             if total < 0:
                 left += 1
             elif total > 0:
                 right -= 1
             else:
-                res.append([nums[i], nums[left], nums[right]])
-                while left < right and nums[left] == nums[left + 1]:
-                    left += 1
-                while left < right and nums[right] == nums[right - 1]:
-                    right -= 1
-                left += 1
-                right -= 1
-    return res[0]
+                return [nums.index(a), nums.index(b), nums.index(c)]
+    return []
 
 
 # Time and space complexity:
@@ -132,12 +127,6 @@ def reverseList(head: Node) -> Node:
 # Space complexity: O(1)
 
 if __name__ == "__main__":
-    # assert twoSum([2, 3, 4, 2, 7], 10) == [1, 4], "twoSum failed"
-    # assert (
-    #     findMostCommonPrefix(["flower", "flow", "flight"]) == "fl"
-    # ), "findMostCommonPrefix failed"
-    # assert threeSum([1, 2, -2, -1, 3]) == [-2, -1, 3], "threeSum failed"
-
     two_sum = twoSum([2, 3, 4, 2, 7], 10)
     print(f"1. Two Sum: {two_sum!r}")
 
