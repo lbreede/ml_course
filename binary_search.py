@@ -1,23 +1,30 @@
-import math
+from typing import Optional
 
-def binary_search(arr, target):
-    lo = 0
-    hi = len(arr)
 
-    while lo < hi:
-        m = math.floor(lo + (hi-lo)/2)
-        v = arr[m]
+def binary_search(arr: list[int], target: int) -> Optional[int]:
+    lft, rgt = 0, len(arr) - 1
+    i = 1
+    while lft <= rgt:
+        idx = lft + (rgt - lft) // 2
+        val = arr[idx]
 
-        if v == target:
-            return True
-        if v > target:
-            hi = m
+        if val == target:
+            print(f"Target {target:>2} found at index {idx:>2} on iteration {i}")
+            return idx
+
+        if val < target:
+            lft = idx + 1
         else:
-            lo = m +1
+            rgt = idx - 1
+        i += 1
 
-    return False
 
-arr = [1,2,3,4,5,6,7,12,32,34,54,76,78,98]
+def main():
+    lst = [0, 3, 6, 9, 12, 15, 16, 19, 25, 28, 39, 41, 42, 45, 48, 50]
+    for i, x in enumerate(lst):
+        idx = binary_search(lst, x)
+        assert idx == i
 
-res = binary_search(arr, 100)
-print(res)
+
+if __name__ == "__main__":
+    main()
