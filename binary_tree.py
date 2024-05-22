@@ -1,53 +1,40 @@
+from dataclasses import dataclass
+from typing import Optional, Self
+
+
+@dataclass
 class Node:
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
+    value: int
+    left: Optional[Self] = None
+    right: Optional[Self] = None
 
+
+@dataclass
 class BinaryTree:
-    def __init__(self):
-        self.root = None
+    root: Optional[Node] = None
 
-    def createNode(self, newValue):
-        newNode = Node(newValue)
-        newNode.left = None
-        newNode.right = None
+    def create_node(self, value: int) -> Node:
+        return Node(value)
 
-        return newNode
-
-    def printTree(self, root):
+    def print_tree(self, root: Node):
         if root is None:
             return
 
         print(root.value)
-        self.printTree(root.left)
-        self.printTree(root.right)
+        self.print_tree(root.left)
+        self.print_tree(root.right)
 
-    def countLeaveNodes(self, root):
-        if root is None:
-            return 0
 
-        if root.left is None and root.right is None:
-            return 1
+def main() -> None:
+    tree = BinaryTree()
+    root = tree.create_node(5)
+    root.left = tree.create_node(3)
+    root.left.left = tree.create_node(12)
+    root.left.right = tree.create_node(4)
+    root.right = tree.create_node(6)
+    root.right.left = tree.create_node(8)
+    tree.print_tree(root)
 
-        leftNodes = self.countLeaveNodes(root.left)
-        rightNodes = self.countLeaveNodes(root.right)
-
-        return leftNodes + rightNodes
 
 if __name__ == "__main__":
-    tree1 = BinaryTree()
-    root1 = tree1.createNode(5)
-    root1.left = tree1.createNode(3)
-    root1.left.left = tree1.createNode(12)
-    root1.left.right = tree1.createNode(4)
-    root1.right = tree1.createNode(6)
-    root1.right.left = tree1.createNode(8)
-    root1.right.right = tree1.createNode(4)
-
-    #tree1.printTree(root1)
-    res = tree1.countLeaveNodes(root1)
-    print(res)
-
-
-
+    main()
