@@ -1,37 +1,41 @@
+from dataclasses import dataclass
+from typing import Optional, Self
+
+
+@dataclass
 class Node:
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
+    value: int
+    left: Optional[Self] = None
+    right: Optional[Self] = None
 
+
+@dataclass
 class BST:
-    def __init__(self):
-        self.root = None
+    root: Optional[Node] = None
 
-    def insert(self, root, newValue):
+    def insert(self, root: Node, value: int) -> Node:
         if root is None:
-            return Node(newValue)
+            return Node(value)
 
+        if value < root.value:
+            root.left = self.insert(root.left, value)
         else:
-            if newValue < root.value:
-                root.left = self.insert(root.left, newValue)
-            else:
-                root.right = self.insert(root.right, newValue)
+            root.right = self.insert(root.right, value)
 
         return root
 
-    def insert_node(self, value):
+    def insert_node(self, value: int) -> None:
         self.root = self.insert(self.root, value)
 
-    def printTree(self, root):
+    def print_tree(self, root: Node) -> None:
         if root is None:
             return
-        self.printTree(root.left)
         print(root.value)
-        self.printTree(root.right)
+        self.print_tree(root.left)
+        self.print_tree(root.right)
 
 
-if __name__ == "__main__":
+def main() -> None:
     bst = BST()
     bst.insert_node(50)
     bst.insert_node(30)
@@ -40,5 +44,8 @@ if __name__ == "__main__":
     bst.insert_node(70)
     bst.insert_node(60)
     bst.insert_node(80)
+    bst.print_tree(bst.root)
 
-    bst.printTree(bst.root)
+
+if __name__ == "__main__":
+    main()

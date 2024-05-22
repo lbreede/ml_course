@@ -13,7 +13,8 @@ class Node:
 class BinaryTree:
     root: Optional[Node] = None
 
-    def create_node(self, value: int) -> Node:
+    @staticmethod
+    def create_node(value: int) -> Node:
         return Node(value)
 
     def print_tree(self, root: Node):
@@ -24,6 +25,15 @@ class BinaryTree:
         self.print_tree(root.left)
         self.print_tree(root.right)
 
+    def count_leaves(self, root: Node) -> int:
+        if root is None:
+            return 0
+
+        if root.left is None and root.right is None:
+            return 1
+
+        return self.count_leaves(root.left) + self.count_leaves(root.right)
+
 
 def main() -> None:
     tree = BinaryTree()
@@ -33,7 +43,10 @@ def main() -> None:
     root.left.right = tree.create_node(4)
     root.right = tree.create_node(6)
     root.right.left = tree.create_node(8)
+    # root.right.right = tree.create_node(7)
     tree.print_tree(root)
+    leaves = tree.count_leaves(root)
+    print(f"Number of leaves: {leaves}")
 
 
 if __name__ == "__main__":
