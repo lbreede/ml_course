@@ -1,6 +1,6 @@
 import numpy as np
+import time
 
-#memoization
 
 def memo_test():
     cache = {}
@@ -10,38 +10,23 @@ def memo_test():
             print("Fetching from cache..")
             return cache[n]
 
-        else:
-            print("Calculating process...")
-            np.random.seed(42)
-            a = np.random.randn(n,n)
-            b = np.random.randn(n,n)
-            c = np.dot(a,b)
-            cache[n] = c
-            return c
+        print("Calculating process...")
+        np.random.seed(42)
+        a = np.random.randn(n, n)
+        b = np.random.randn(n, n)
+        c = np.dot(a, b)
+        cache[n] = c
+        return c
 
     return closure
 
+
 if __name__ == "__main__":
-
-    N = input("Enter the size: ")
-    N = int(N)
-
     matrix_calculation = memo_test()
 
-    m1 = matrix_calculation(N)
-    print(m1)
-
-    N = input("Enter the size: ")
-    N = int(N)
-    m2 = matrix_calculation(N)
-    print(m2)
-
-    N = input("Enter the size: ")
-    N = int(N)
-    m3 = matrix_calculation(N)
-    print(m3)
-
-    N = input("Enter the size: ")
-    N = int(N)
-    m4 = matrix_calculation(N)
-    print(m4)
+    for _ in range(4):
+        num = int(input("Enter the size: "))
+        start = time.time()
+        matrix_calculation(num)
+        duration = time.time() - start
+        print(f"Matrix calculation with size {num} took {duration:.3f}s")
