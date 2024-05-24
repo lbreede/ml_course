@@ -2,21 +2,23 @@ import math
 
 graph = {
     "a": ["b"],
-    "b": ["a","c","d","e"],
-    "c": ["b","e"],
-    "e": ["c","b","d","f"],
-    "d": ["b","e","f"],
-    "f": ["d","e","g"],
+    "b": ["a", "c", "d", "e"],
+    "c": ["b", "e"],
+    "e": ["c", "b", "d", "f"],
+    "d": ["b", "e", "f"],
+    "f": ["d", "e", "g"],
     "g": ["f"],
     "o": ["n"],
     "n": ["o"],
-        }
+}
+
 
 def connectedGraphs(graph):
     visited = set()
-    #for node in graph:
+    # for node in graph:
     #    graphTraversal(graph, node, visited)
     print(hasPath(graph, "a", "n", visited))
+
 
 def graphTraversal(graph, source, visited):
     if source in visited:
@@ -29,6 +31,7 @@ def graphTraversal(graph, source, visited):
 
     return True
 
+
 def hasPath(graph, source, dest, visited):
     if source == dest:
         return True
@@ -40,5 +43,6 @@ def hasPath(graph, source, dest, visited):
             return True
 
     return False
+
 
 connectedGraphs(graph)
